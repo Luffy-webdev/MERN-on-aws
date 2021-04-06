@@ -29,15 +29,3 @@ sudo rm default && sudo ln -s /etc/nginx/sites-available/{{APP}} /etc/nginx/site
 
 
 ** => don't forget to make a .env file otherwise instance won't run **
-
-If error comes while making build for eg. if *javascript heap out of memory* error comes then =>
-
-Currently you're at directory /var/www/pf/client i.e. at your client directory (*pf* can be any name, you've given to your server)
-
-go to you server directory i.e. by *cd ..* command
-
-and run this command (https://stackoverflow.com/questions/38558989/node-js-heap-out-of-memory)=>
-
-** set NODE_OPTIONS=--max_old_space_size=8172 **
-
-you're good to go 
