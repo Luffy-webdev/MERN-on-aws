@@ -9,7 +9,7 @@ Note : The file does not contain information on how to setup native mongoDB on E
 1. in your package.json in client folder, change react start script from `react-scripts start` to `GENERATE_SOURCEMAP=false react-scripts start`. This can avoid some memory 
 consumption.
 1. increase nodejs space . run this command to increase the space of you app. `set NODE_OPTIONS=--max_old_space_size=8172`
-Yoi can set it to any amount of memory. In this case it is 8gb(8172mb)
+You can set it to any amount of memory. In this case it is 8gb(8172mb)
 1. Increase size taken by react app while build . In package.json file of client , change scripts build line from `react-scripts build` to `react-scripts --max_old_space_size=4096 build`
 
 ### Configurng Nginx for file uploading . 
