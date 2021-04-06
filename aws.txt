@@ -1,0 +1,43 @@
+sudo apt-get update && sudo apt-get install -y build-essential openssl libssl-dev pkg-config && sudo apt-get install -y nodejs libnode64 && sudo apt-get install npm -y && sudo npm cache clean -f && sudo npm install -g n && sudo n stable && sudo apt-get install nginx git -y && cd /var/www
+
+sudo git clone {{APP REPO URL FROM GITHUB}} 
+
+sudo apt-get install -y build-essential openssl libssl-dev pkg-config && cd /etc/nginx/sites-available
+
+sudo vim {{ YOUR APP NAME (OR REPO NAME, BOTH ARE SAME) }}
+
+server {
+    listen 80;
+    location / {
+        proxy_pass http://{{PRIVATE IP FROM EC2 INSTANCE}}:{{YOUR NODEJS PORT NUMBER}};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+::hit *esc*
+::write wq
+::hit *enter*
+
+PRESS
+esc + i, insert mode
+
+
+sudo rm default && sudo ln -s /etc/nginx/sites-available/{{APP}} /etc/nginx/sites-enabled/{{APP}} && sudo rm /etc/nginx/sites-enabled/default && sudo npm install pm2 -g && cd /var/www/ && sudo chown -R ubuntu pf && cd {{APP}} && sudo npm i && cd client && sudo npm i && sudo npm run build && cd /var/www/ && cd {{APP}} && pm2 start {{YOUR NODEJS FILENAME i.e. app.js OR server.js etc.}} && sudo service nginx stop && sudo service nginx start
+
+
+** => don't forget to make a .env file otherwise instance won't run **
+
+If error comes while making build for eg. if *javascript heap out of memory* error comes then =>
+
+Currently you're at directory /var/www/pf/client i.e. at your client directory (*pf* can be any name, you've given to your server)
+
+go to you server directory i.e. by *cd ..* command
+
+and run this command (https://stackoverflow.com/questions/38558989/node-js-heap-out-of-memory)=>
+
+** set NODE_OPTIONS=--max_old_space_size=8172 **
+
+you're good to go 
