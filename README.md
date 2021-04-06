@@ -19,3 +19,5 @@ To increase the file transfer size =>
 * Then inside `http {` add this line : `client_max_body_size 100M;`
 * After this go to server directory and run `sudo service nginx stop && sudo service nginx start`
 * Your max file transfer is increased to 100mb
+
+If you find this useful do star this repository 👀
