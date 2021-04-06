@@ -1,4 +1,4 @@
-# MERN-on-aws
+# MERN-on-aws 🚀
 The repository guides, how to setup a MERN application on aws EC2
 
 THe repo contains a file aws.txt to setup MERN on aws EC2 instance.
